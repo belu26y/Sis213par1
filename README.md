@@ -1,7 +1,7 @@
 # Aplicacion de listas de tareas
 ## Estudiates: 
-Yara Belen Quispe Nicolas
-Rodrigo Edgar Tarifa Rojas
+- Yara Belen Quispe Nicolas
+- Rodrigo Edgar Tarifa Rojas
 
 ## Enunciado.
 Crear una aplicacion de lista de tareas que permita a los usuarios agregar nuevas tareas, marcalas como completadas, eliminarlas de la lista, generar reportes por estado de tareas en curso y tareas completadas. 
