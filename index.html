@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notepad RY</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Notepad RY</h1>
+    <img src="logo.png.jpeg" alt="Imagen de Tareas">
+    <input type="text" id="taskInput" placeholder="Ingrese una nueva tarea...">
+    <button onclick="addTask()">Agregar Tarea</button>
+    <ul id="taskList"></ul>
+    <div class="btn-group">
+        <button onclick="editTask()">Editar Tarea</button>
+        <button onclick="deleteTask()">Eliminar Tarea</button>
+        <button onclick="showAllTasks()">Lista de Tareas</button>
+    </div>
+    <ul id="allTasks" style="display: none;"></ul>
+</div>
+
+<script src="scripts.js"></script>
+
+</body>
+</html>
+
