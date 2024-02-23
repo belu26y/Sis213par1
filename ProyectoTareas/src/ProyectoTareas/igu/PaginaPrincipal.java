@@ -35,7 +35,7 @@ public class PaginaPrincipal extends JFrame {
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 149, 383, 352);
+		panel_1.setBounds(244, 148, 383, 352);
 		panel_1.setBackground(Color.RED);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -71,10 +71,10 @@ public class PaginaPrincipal extends JFrame {
 		btnReportes.setBounds(10, 98, 364, 60);
 		btnReportes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Pedidos pantalla = new Pedidos();
-				pantalla.setVisible(true);
-				pantalla.setLocationRelativeTo(null);
-				dispose();
+				//Pedidos pantalla = new Pedidos();
+				//pantalla.setVisible(true);
+				//pantalla.setLocationRelativeTo(null);
+				//dispose();
 			}
 		});
 		btnReportes.setForeground(Color.BLACK);
@@ -100,10 +100,5 @@ public class PaginaPrincipal extends JFrame {
 		lblNotePadRY.setFont(new Font("Impact", Font.BOLD | Font.ITALIC, 60));
 		lblNotePadRY.setBackground(Color.WHITE);
 		panel.add(lblNotePadRY);
-		
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setBounds(433, 149, 383, 352);
-		lblLogo.setIcon(new ImageIcon("C:\\Users\\Rodrigo Edgar Tarifa\\Downloads\\Proyecto\\SABORES_FUSIONADOS-removebg-preview.png"));
-		panel.add(lblLogo);
 	}
 }

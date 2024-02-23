@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import ProyectoTareas.logica.Tarea;
+import ProyectoTareas.logica.TablaHashTareas;
 public class Tareas extends JFrame {
 	
 	private JPanel contentPane;
@@ -31,7 +32,7 @@ public class Tareas extends JFrame {
 	private JTextField txtDescripcion;
 	private JTextField txtEstado;
 	
-	private TablaHashProductos tablaProductos;
+	private TablaHashTareas tablaTareas;
 	private JTextField txtBuscar;
 	private JTextField txtPrioridad;
 	private JTextField txtFecha;
@@ -40,9 +41,9 @@ public class Tareas extends JFrame {
 	private void ActualizarTablaProductos() {
 	    modelo.setRowCount(0); // Limpiar el modelo de la tabla antes de actualizar
 
-	    for (Map.Entry<String, Producto> entry : tablaProductos.getTablaProductos().entrySet()) {
-	        Producto producto = entry.getValue();
-	        modelo.addRow(new Object[]{producto.getNombre(), producto.getDescripcion(), producto.getPrecio()});
+	    for (Map.Entry<String, Tarea> entry : tablaTareas.getTablaTarea().entrySet()) {
+	        Tarea tarea = entry.getValue();
+	        modelo.addRow(new Object[]{tarea.getId_tarea(), tarea.getNombre(), tarea.getDescripcion(), tarea.getEstado(), tarea.getPrioridad(), tarea.getFecha()});
 	    }
 
 	    tblProductos.setModel(modelo);
@@ -72,7 +73,7 @@ public class Tareas extends JFrame {
 		lblTareas.setBackground(Color.WHITE);
 		panel.add(lblTareas);
 		
-		tablaProductos = new TablaHashProductos();
+		tablaTareas = new TablaHashTareas();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 107, 557, 405);
@@ -119,12 +120,13 @@ public class Tareas extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nombre = txtEliminar.getText();
-                Producto productoEncontrado = tablaProductos.buscarProducto(nombre);
+                Tarea tareaEncontrado = tablaTareas.buscarTarea(nombre);
 
-                if (productoEncontrado != null) {
-                    JOptionPane.showMessageDialog(null, "Producto encontrado:\nNombre: " + productoEncontrado.getNombre()
-                            + "\nDescripción: " + productoEncontrado.getDescripcion() + "\nPrecio: " + productoEncontrado.getPrecio() + "\nProducto Eliminado Exitosamente");
-                    tablaProductos.eliminarProducto(nombre);
+                if (tareaEncontrado != null) {
+                    JOptionPane.showMessageDialog(null, "Producto encontrado:\nNombre: " + tareaEncontrado.getNombre()
+                            + "\nDescripción: " + tareaEncontrado.getDescripcion() + "\nEstado: " + tareaEncontrado.getEstado() + 
+                            "\nPrioridad: " + tareaEncontrado.getPrioridad() +  "\nFecha: " + tareaEncontrado.getFecha() +"\nProducto Eliminado Exitosamente");
+                    tablaTareas.eliminarTarea(nombre);
     				ActualizarTablaProductos();
                 } else {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado");
@@ -209,13 +211,18 @@ public class Tareas extends JFrame {
 		btnAgregar.setBounds(752, 320, 192, 43);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				int id_tarea = Integer.parseInt(txtNro.getText());
 				String nombre = txtNombre.getText();
                 String descripcion = txtDescripcion.getText();
-                double precio = Double.parseDouble(txtEstado.getText());
+                String estado = txtEstado.getText();
+                String prioridad = txtPrioridad.getText();
+                String fecha = txtFecha.getText();
+             
                 
-                Producto nuevoProducto = new Producto(nombre, descripcion, precio);
+                Tarea nuevaTarea = new Tarea(id_tarea, nombre, descripcion, estado, prioridad, fecha);
 
-                tablaProductos.agregarProducto(nuevoProducto);
+                tablaTareas.agregarTarea(nuevaTarea);
                 
                 ActualizarTablaProductos();
                 
@@ -247,9 +254,12 @@ public class Tareas extends JFrame {
 		btnRefresh.setIcon(new ImageIcon("C:\\Users\\Rodrigo Edgar Tarifa\\Downloads\\Proyecto\\Recarga (1).png"));
 		btnRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				txtNro.setText("");
 				txtNombre.setText("");
 				txtDescripcion.setText("");
 				txtEstado.setText("");
+				txtPrioridad.setText("");
+				txtFecha.setText("");
 				txtEliminar.setText("");
 				txtBuscar.setText("");
 			}
@@ -300,11 +310,11 @@ public class Tareas extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 String nombreBusqueda = txtBuscar.getText();
-                Producto productoEncontrado = tablaProductos.buscarProducto(nombreBusqueda);
+                Tarea tareaEncontrada= tablaTareas.buscarTarea(nombreBusqueda);
 
-                if (productoEncontrado != null) {
-                    JOptionPane.showMessageDialog(null, "Producto encontrado:\nNombre: " + productoEncontrado.getNombre()
-                            + "\nDescripción: " + productoEncontrado.getDescripcion() + "\nPrecio: " + productoEncontrado.getPrecio());
+                if (tareaEncontrada != null) {
+                    JOptionPane.showMessageDialog(null, "Producto encontrado:\nNombre: " + tareaEncontrada.getNombre()
+                            + "\nDescripción: " + tareaEncontrada.getDescripcion() + "\nEstado: " + tareaEncontrada.getEstado());
                 } else {
                     JOptionPane.showMessageDialog(null, "Producto no encontrado");
                 }
