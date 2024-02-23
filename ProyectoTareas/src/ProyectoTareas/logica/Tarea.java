@@ -5,16 +5,19 @@ public class Tarea {
 	protected String nombre;
 	protected String descripcion;
 	protected String estado;
+	protected String prioridad;
+	protected String fecha;
 	
 	public Tarea() {
 	}
-	
-	public Tarea(int id_tarea, String nombre, String descripcion, String estado) {
-		super();
+
+	public Tarea(int id_tarea, String nombre, String descripcion, String estado, String prioridad, String fecha) {
 		this.id_tarea = id_tarea;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.estado = estado;
+		this.prioridad = prioridad;
+		this.fecha = fecha;
 	}
 
 	public int getId_tarea() {
@@ -48,6 +51,20 @@ public class Tarea {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
+	public String getPrioridad() {
+		return prioridad;
+	}
+
+	public void setPrioridad(String prioridad) {
+		this.prioridad = prioridad;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}		
 }
